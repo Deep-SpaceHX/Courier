@@ -10,13 +10,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0b0c10;
-            color: #c5c6c7;
+            background-color: #3E2723; /* UPS brown background */
+            color: #FFFFFF; /* White text */
             line-height: 1.6;
         }
         header {
-            background-color: #1f2833;
-            color: #66fcf1;
+            background-color: #3E2723; /* UPS brown */
+            color: #FFC107; /* Gold text for header */
             padding: 10px;
             text-align: center;
         }
@@ -24,7 +24,7 @@
             margin-top: 10px;
         }
         header nav a {
-            color: #66fcf1;
+            color: #FFC107; /* Gold links */
             text-decoration: none;
             margin: 0 15px;
             font-size: 1.1rem;
@@ -36,7 +36,14 @@
             padding: 20px;
         }
         h1, h2 {
-            color: #45a29e;
+            color: #FFC107; /* Gold headings */
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #3E2723; /* Brown container */
+            border: 2px solid #FFC107; /* Gold border */
+            border-radius: 8px;
         }
         ul {
             margin: 20px 0;
@@ -50,13 +57,13 @@
         }
         ul li::before {
             content: "• ";
-            color: #66fcf1;
+            color: #FFC107; /* Gold bullet points */
         }
         footer {
             text-align: center;
             padding: 10px 0;
-            background-color: #1f2833;
-            color: #c5c6c7;
+            background-color: #3E2723; /* Brown background for footer */
+            color: #FFFFFF; /* White text */
         }
     </style>
 </head>
@@ -70,27 +77,35 @@
             <a href="services.html">Services</a>
             <a href="members.html">Members</a>
             <a href="recruitment.html">Recruitment</a>
+            <a href="quarterly-hauling.html">Quarterly Hauling</a>
+            <a href="courier-calculator.html">Courier Calculator</a>
             <a href="contact.html">Contact Us</a>
         </nav>
     </header>
     <main>
-        <h2>What We Offer</h2>
-        <p>At Deep Space Hauling Express (DSHX), we specialize in reliable and secure hauling services across New Eden. Whether you’re an independent pilot or a large corporation, we have the expertise and resources to meet your logistical needs.</p>
+        <div class="section">
+            <h2>What We Offer</h2>
+            <p>At Deep Space Hauling Express (DSHX), we specialize in reliable and secure hauling services across New Eden. Whether you’re an independent pilot or a large corporation, we have the expertise to meet your logistical needs.</p>
+        </div>
         
-        <h2>Our Specialized Services</h2>
-        <ul>
-            <li><strong>Deep Space Transport:</strong> Expertise in navigating the most challenging regions of New Eden to deliver your cargo safely.</li>
-            <li><strong>Blockade Runners:</strong> High-speed, covert operations to ensure your valuable assets bypass blockades and reach their destination.</li>
-            <li><strong>Freighter Services:</strong> Dedicated to safe and efficient hauling across High-Sec space, ensuring your cargo arrives intact. <em>(Coming Soon)</em></li>
-            <li><strong>Jump Freighter Services:</strong> Advanced long-distance hauling to Low-Sec and Null-Sec regions, leveraging jump capabilities for secure transport. <em>(Coming Soon)</em></li>
-        </ul>
+        <div class="section">
+            <h2>Our Specialized Services</h2>
+            <p>Our primary focus is on <strong>Deep Space Transport</strong>, where we excel in navigating the most challenging regions of New Eden to deliver your cargo safely and efficiently. In addition, we offer the following services:</p>
+            <ul>
+                <li><strong>Blockade Runners:</strong> High-speed, covert operations to ensure your valuable assets bypass blockades and reach their destination.</li>
+                <li><strong>Freighter Services:</strong> Dedicated to safe and efficient hauling across High-Sec space, ensuring your cargo arrives intact. <em>(Coming Soon)</em></li>
+                <li><strong>Jump Freighter Services:</strong> Advanced long-distance hauling to Low-Sec and Null-Sec regions, leveraging jump capabilities for secure transport. <em>(Coming Soon)</em></li>
+            </ul>
+        </div>
 
-        <h2>Why Choose DSHX?</h2>
-        <ul>
-            <li><strong>Experienced Team:</strong> Our pilots have logged thousands of jumps and completed countless deliveries.</li>
-            <li><strong>Competitive Rates:</strong> Affordable pricing without compromising on quality or security.</li>
-            <li><strong>Trust and Reliability:</strong> A proven track record of excellence in hauling operations.</li>
-        </ul>
+        <div class="section">
+            <h2>Why Choose DSHX?</h2>
+            <ul>
+                <li><strong>Experienced Team:</strong> Our pilots have logged thousands of jumps and completed countless deliveries.</li>
+                <li><strong>Competitive Rates:</strong> Affordable pricing without compromising on quality or security.</li>
+                <li><strong>Trust and Reliability:</strong> A proven track record of excellence in hauling operations.</li>
+            </ul>
+        </div>
     </main>
     <footer>
         <p>Fly Safe. Deliver Smart. Profit More.</p>
