@@ -10,13 +10,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0b0c10;
-            color: #c5c6c7;
+            background-color: #3E2723; /* UPS brown background */
+            color: #FFFFFF; /* White text */
             line-height: 1.6;
         }
         header {
-            background-color: #1f2833;
-            color: #66fcf1;
+            background-color: #3E2723; /* UPS brown */
+            color: #FFC107; /* Gold text for header */
             padding: 10px;
             text-align: center;
         }
@@ -24,7 +24,7 @@
             margin-top: 10px;
         }
         header nav a {
-            color: #66fcf1;
+            color: #FFC107; /* Gold links */
             text-decoration: none;
             margin: 0 15px;
             font-size: 1.1rem;
@@ -36,29 +36,36 @@
             padding: 20px;
         }
         h1, h2 {
-            color: #45a29e;
+            color: #FFC107; /* Gold headings */
         }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #1f2833;
-            color: #c5c6c7;
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #3E2723; /* Brown container */
+            border: 2px solid #FFC107; /* Gold border */
+            border-radius: 8px;
         }
         .cta {
-            background-color: #45a29e;
-            color: #0b0c10;
+            background-color: #FFC107; /* Gold background for Call-to-Action */
+            color: #3E2723; /* Brown text */
             text-align: center;
             padding: 10px;
             margin: 20px 0;
             border-radius: 5px;
         }
         .cta a {
-            color: white;
+            color: #3E2723; /* Brown links */
             text-decoration: none;
             font-weight: bold;
         }
         .cta a:hover {
             text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #3E2723; /* Brown background for footer */
+            color: #FFFFFF; /* White text */
         }
     </style>
 </head>
@@ -72,32 +79,40 @@
             <a href="services.html">Services</a>
             <a href="members.html">Members</a>
             <a href="recruitment.html">Recruitment</a>
+            <a href="quarterly-hauling.html">Quarterly Hauling</a>
+            <a href="courier-calculator.html">Courier Calculator</a>
             <a href="contact.html">Contact Us</a>
         </nav>
     </header>
     <main>
-        <h2>Why Join DSHX?</h2>
-        <p>Are you ready to be part of a premier hauling and logistics corporation in New Eden? At Deep Space Hauling Express, we offer:</p>
-        <ul>
-            <li><strong>Opportunities for Growth:</strong> Learn from experienced pilots and grow your skills.</li>
-            <li><strong>Secure Operations:</strong> Operate under a trusted network with secure routes.</li>
-            <li><strong>Collaborative Environment:</strong> Join a friendly and supportive team atmosphere.</li>
-            <li><strong>Profit Sharing:</strong> Earn competitive rewards for your hard work.</li>
-        </ul>
+        <div class="section">
+            <h2>Why Join DSHX?</h2>
+            <p>Are you ready to be part of a premier hauling and logistics corporation in New Eden? At Deep Space Hauling Express, we offer:</p>
+            <ul>
+                <li><strong>Opportunities for Growth:</strong> Learn from experienced pilots and grow your skills.</li>
+                <li><strong>Secure Operations:</strong> Operate under a trusted network with secure routes.</li>
+                <li><strong>Collaborative Environment:</strong> Join a friendly and supportive team atmosphere.</li>
+                <li><strong>Profit Sharing:</strong> Earn competitive rewards for your hard work.</li>
+            </ul>
+        </div>
         
-        <h2>Requirements</h2>
-        <ul>
-            <li>Active participation in corp activities.</li>
-            <li>Willingness to operate in High-Sec, Low-Sec, and Null-Sec space.</li>
-            <li>Basic understanding of hauling and logistics in EVE Online.</li>
-            <li>A positive attitude and a team player mindset.</li>
-        </ul>
+        <div class="section">
+            <h2>Requirements</h2>
+            <ul>
+                <li>Active participation in corp activities.</li>
+                <li>Willingness to operate in High-Sec, Low-Sec, and Null-Sec space.</li>
+                <li>Basic understanding of hauling and logistics in EVE Online.</li>
+                <li>A positive attitude and a team player mindset.</li>
+            </ul>
+        </div>
         
-        <h2>How to Apply</h2>
-        <p>If you’re interested in joining, contact <strong>Agsavan Gainkesh</strong> in-game or reach out via our corporation channel. Let’s get you started on a rewarding journey with DSHX!</p>
-        <div class="cta">
-            <p>Start your journey with us today!</p>
-            <a href="contact.html">Contact Us</a>
+        <div class="section">
+            <h2>How to Apply</h2>
+            <p>If you’re interested in joining, contact <strong>Agsavan Gainkesh</strong> in-game or reach out via our corporation channel. Let’s get you started on a rewarding journey with DSHX!</p>
+            <div class="cta">
+                <p>Start your journey with us today!</p>
+                <a href="contact.html">Contact Us</a>
+            </div>
         </div>
     </main>
     <footer>
