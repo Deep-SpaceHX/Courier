@@ -115,13 +115,13 @@
             top: 50%;
             transform: translateY(-50%);
             z-index: 1;
-            width: 150px; /* Adjust as needed */
-            height: 150px; /* Adjust as needed */
+            width: 200px; /* Increased size */
+            height: 200px; /* Increased size */
             background: radial-gradient(circle, rgba(255, 193, 7, 0.5) 0%, rgba(255, 193, 7, 0) 80%);
             border: 2px solid rgba(255, 193, 7, 0.8); /* Gold border */
             border-radius: 50%; /* Circular hologram */
             box-shadow: 0 0 15px rgba(255, 193, 7, 0.8); /* Glow effect */
-            animation: float 3s ease-in-out infinite, spin 10s linear infinite; /* Floating and spinning animations */
+            animation: float 3s ease-in-out infinite; /* Floating animation */
             opacity: 0.9; /* Slight transparency */
         }
         .hologram img {
@@ -129,13 +129,12 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            animation: spin 10s linear infinite; /* Rotate the image */
         }
         .hologram.left {
-            left: -200px; /* Adjust for positioning */
+            left: -220px; /* Adjusted for positioning */
         }
         .hologram.right {
-            right: -200px; /* Adjust for positioning */
+            right: -220px; /* Adjusted for positioning */
         }
         @keyframes float {
             0%, 100% {
@@ -143,14 +142,6 @@
             }
             50% {
                 transform: translateY(-60%) translateX(0);
-            }
-        }
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
             }
         }
     </style>
