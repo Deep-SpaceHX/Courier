@@ -10,13 +10,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #3E2723; /* UPS brown background */
-            color: #FFFFFF; /* White text */
+            background-color: #3E2723;
+            color: #FFFFFF;
             line-height: 1.6;
         }
         header {
-            background-color: #3E2723; /* UPS brown */
-            color: #FFC107; /* Gold text for header */
+            background-color: #3E2723;
+            color: #FFC107;
             padding: 10px;
             text-align: center;
         }
@@ -24,7 +24,7 @@
             margin-top: 10px;
         }
         header nav a {
-            color: #FFC107; /* Gold links */
+            color: #FFC107;
             text-decoration: none;
             margin: 0 15px;
             font-size: 1.1rem;
@@ -37,27 +37,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative; /* Allow absolute positioning of holograms */
+            position: relative;
         }
         h1, h2 {
-            color: #FFC107; /* Gold headings */
+            color: #FFC107;
         }
         .calculator-container {
             max-width: 600px;
             margin: 50px auto;
             padding: 30px;
-            border: 2px solid #FFC107; /* Gold border */
+            border: 2px solid #FFC107;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow */
-            background-color: #3E2723; /* UPS Brown */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            background-color: #3E2723;
             z-index: 2;
-            position: relative; /* For layering */
+            position: relative;
         }
         label {
             font-weight: bold;
             margin-top: 10px;
             display: block;
-            color: #FFFFFF; /* White text for labels */
+            color: #FFFFFF;
         }
         input, select, button {
             width: 100%;
@@ -65,45 +65,55 @@
             padding: 12px;
             font-size: 1em;
             border-radius: 5px;
-            border: 1px solid #FFC107; /* Gold border for input fields */
-            background-color: #3E2723; /* Brown background for input fields */
-            color: #FFFFFF; /* White text for input fields */
+            border: 1px solid #FFC107;
+            background-color: #3E2723;
+            color: #FFFFFF;
         }
         input:focus, select:focus {
             outline: none;
-            border-color: #FFC107; /* Gold border on focus */
-            box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Gold glow */
+            border-color: #FFC107;
+            box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
         }
         button {
-            background-color: #FFC107; /* Gold for buttons */
-            color: #3E2723; /* Brown text for buttons */
+            background-color: #FFC107;
+            color: #3E2723;
             font-weight: bold;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         button:hover {
-            background-color: #FFD54F; /* Lighter gold on hover */
-            color: #FFFFFF; /* White text on hover */
+            background-color: #FFD54F;
+            color: #FFFFFF;
         }
         .result {
             margin-top: 20px;
             font-weight: bold;
             font-size: 1.2em;
-            color: #FFC107; /* Gold for results */
+            color: #FFC107;
             text-align: center;
         }
         .disclaimer {
             margin-top: 20px;
             font-size: 0.8em;
-            color: #FFFFFF; /* White for disclaimer text */
+            color: #FFFFFF;
             text-align: center;
+        }
+        .discount-success {
+            color: #90EE90;
+            text-align: center;
+            font-weight: bold;
+        }
+        .discount-fail {
+            color: #FFB6B6;
+            text-align: center;
+            font-weight: bold;
         }
         footer {
             text-align: center;
             padding: 10px 0;
-            background-color: #3E2723; /* Brown background for footer */
-            color: #FFFFFF; /* White text */
+            background-color: #3E2723;
+            color: #FFFFFF;
         }
         .hologram {
             position: absolute;
@@ -113,10 +123,10 @@
             width: 200px;
             height: 200px;
             background: radial-gradient(circle, rgba(255, 193, 7, 0.5) 0%, rgba(255, 193, 7, 0) 80%);
-            border: 2px solid rgba(255, 193, 7, 0.8); /* Gold border */
-            border-radius: 50%; /* Circular hologram */
-            box-shadow: 0 0 15px rgba(255, 193, 7, 0.8); /* Glow effect */
-            animation: float 3s ease-in-out infinite; /* Floating animation */
+            border: 2px solid rgba(255, 193, 7, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
+            animation: float 3s ease-in-out infinite;
             opacity: 0.9;
         }
         .hologram img {
@@ -126,10 +136,10 @@
             object-fit: cover;
         }
         .hologram.left {
-            left: -220px; /* Adjusted for positioning */
+            left: -220px;
         }
         .hologram.right {
-            right: -220px; /* Adjusted for positioning */
+            right: -220px;
         }
         @keyframes float {
             0%, 100% {
@@ -164,7 +174,7 @@
         <!-- Calculator -->
         <div class="calculator-container">
             <h2>DSHX Courier Calculator</h2>
-            <form id="rewardCalculator">
+            <form id="rewardCalculator" onsubmit="event.preventDefault(); calculateReward();">
                 <label for="jumps">Number of Jumps:</label>
                 <input type="number" id="jumps" placeholder="Enter number of jumps" required>
 
@@ -186,7 +196,23 @@
                     <option value="yes">Yes</option>
                 </select>
 
-                <button type="button" onclick="calculateReward()">Calculate Reward</button>
+                <label for="tip">Tip (ISK):</label>
+                <input type="number" id="tip" placeholder="Optional tip amount">
+
+                <hr>
+                <label for="trusted">Trusted Corp/Player:</label>
+                <select id="trusted">
+                    <option value="">None</option>
+                    <option value="corp1">Space Bros Inc.</option>
+                    <option value="player1">JaneHauler</option>
+                    <option value="player2">JohnCourier</option>
+                </select>
+
+                <label for="secretCode">Secret Discount Code:</label>
+                <input type="password" id="secretCode" placeholder="Enter discount code">
+
+                <div id="discountMessage"></div>
+                <button type="submit">Calculate Reward</button>
             </form>
             <div class="result" id="result"></div>
             <div class="disclaimer">
@@ -202,21 +228,39 @@
         <p>Fly Safe. Deliver Smart. Profit More.</p>
     </footer>
     <script>
+        // Map trusted entity to its secret code and discount percent
+        const trustedDiscounts = {
+            "corp1": { code: "SPACE10", discount: 0.10 }, // 10% discount
+            "player1": { code: "JANE123", discount: 0.10 }, // 10% discount
+            "player2": { code: "JOHN321", discount: 0.10 }  // 10% discount
+        };
+
         function calculateReward() {
-            const jumps = parseFloat(document.getElementById("jumps").value);
+            let jumps = parseFloat(document.getElementById("jumps").value);
             const volume = parseFloat(document.getElementById("volume").value);
             let collateral = parseFloat(document.getElementById("collateral").value);
             const expedited = document.getElementById("expedited").value === "yes";
             const lowNullSec = document.getElementById("lowNullSec").value === "yes";
+            let tip = parseFloat(document.getElementById("tip").value);
+
+            // Trusted Corp/Player and code
+            const trusted = document.getElementById("trusted").value;
+            const code = document.getElementById("secretCode").value.trim();
+            const discountMsg = document.getElementById("discountMessage");
+
+            discountMsg.innerHTML = ""; // Clear previous
 
             if (isNaN(jumps) || isNaN(volume) || isNaN(collateral) || jumps <= 0 || volume <= 0 || collateral <= 0) {
                 document.getElementById("result").innerText = "Please enter valid numbers for all fields.";
                 return;
             }
+            if (isNaN(tip) || tip < 0) {
+                tip = 0;
+            }
 
-            let base = 1e6; // Base reward
-            let add = 0; // Additional fees
-            let mult = 1; // Multiplier
+            let base = 1e6;
+            let add = 0;
+            let mult = 1;
 
             if (volume <= 12000 && collateral < 1e9) {
                 collateral = (100e6 + collateral) / 1.1;
@@ -226,33 +270,47 @@
                 collateral = (3e9 + collateral) / 4;
             }
 
+            let jumpsUsed = jumps;
             if (jumps < 5) {
-                jumps = (5 + jumps) * 0.5;
+                jumpsUsed = (5 + jumps) * 0.5;
             }
 
             if (volume > 1050e3) {
                 add += 250e3;
             } else if (volume > 880e3) {
-                if (collateral > 1.5e9) {
-                    add += 100e3;
-                }
-                if (collateral > 2.5e9) {
-                    add += 100e3;
-                }
-                if (collateral > 3e9) {
-                    add += 200e3;
+                if (collateral > 1.5e9) add += 100e3;
+                if (collateral > 2.5e9) add += 100e3;
+                if (collateral > 3e9) add += 200e3;
+            }
+
+            if (expedited) mult *= 2.0;
+            if (lowNullSec) mult *= 2;
+
+            let calcReward = ((mult * base * collateral / 1e9) + add) * jumpsUsed;
+            let reward;
+
+            // If the calculated reward is less than 10M, add 10M to the calculated reward
+            if (calcReward < 10_000_000) {
+                reward = calcReward + 10_000_000;
+            } else {
+                reward = calcReward;
+            }
+
+            // Apply discount if trusted and code matches
+            let discount = 0;
+            let discountApplied = false;
+            if (trusted && trustedDiscounts[trusted]) {
+                if (code && code === trustedDiscounts[trusted].code) {
+                    discount = trustedDiscounts[trusted].discount;
+                    reward = reward * (1 - discount);
+                    discountMsg.innerHTML = `<span class="discount-success">Discount applied: ${(discount*100).toFixed(0)}% off!</span>`;
+                    discountApplied = true;
+                } else if (code) {
+                    discountMsg.innerHTML = `<span class="discount-fail">Invalid secret code for selected corp/player.</span>`;
                 }
             }
 
-            if (expedited) {
-                mult *= 2.0;
-            }
-
-            if (lowNullSec) {
-                mult *= 2;
-            }
-
-            const reward = ((mult * base * collateral / 1e9) + add) * jumps;
+            reward += tip;
 
             document.getElementById("result").innerText =
                 `Estimated Reward: ${reward.toLocaleString()} ISK`;
