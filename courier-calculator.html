@@ -190,8 +190,15 @@
                     <option value="yes">Yes</option>
                 </select>
 
-                <label for="lowNullSec">Low/Nullsec Route:</label>
-                <select id="lowNullSec">
+                <!-- Lowsec and Nullsec as Yes/No dropdowns -->
+                <label for="lowSec">Lowsec Involved:</label>
+                <select id="lowSec">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+
+                <label for="nullSec">Nullsec Involved:</label>
+                <select id="nullSec">
                     <option value="no">No</option>
                     <option value="yes">Yes</option>
                 </select>
@@ -240,7 +247,8 @@
             const volume = parseFloat(document.getElementById("volume").value);
             let collateral = parseFloat(document.getElementById("collateral").value);
             const expedited = document.getElementById("expedited").value === "yes";
-            const lowNullSec = document.getElementById("lowNullSec").value === "yes";
+            const lowSec = document.getElementById("lowSec").value === "yes";
+            const nullSec = document.getElementById("nullSec").value === "yes";
             let tip = parseFloat(document.getElementById("tip").value);
 
             // Trusted Corp/Player and code
@@ -258,53 +266,29 @@
                 tip = 0;
             }
 
-            let base = 1e6;
-            let add = 0;
+            // NEW REWARD FORMULA
+            // 1,000,000 ISK per jump per 1B ISK of collateral (fractional for less than 1B)
+            let rewardPerJump = (collateral / 1e9) * 1e6;
+            let baseReward = rewardPerJump * jumps;
+
+            // Expedited is not mentioned in new rules, but keeping for backward compatibility if needed
             let mult = 1;
-
-            if (volume <= 12000 && collateral < 1e9) {
-                collateral = (100e6 + collateral) / 1.1;
-            } else if (volume <= 60000 && volume > 12000 && collateral < 1e9) {
-                collateral = (1e9 + collateral) / 2;
-            } else if (volume > 62500 && collateral < 1e9) {
-                collateral = (3e9 + collateral) / 4;
-            }
-
-            let jumpsUsed = jumps;
-            if (jumps < 5) {
-                jumpsUsed = (5 + jumps) * 0.5;
-            }
-
-            if (volume > 1050e3) {
-                add += 250e3;
-            } else if (volume > 880e3) {
-                if (collateral > 1.5e9) add += 100e3;
-                if (collateral > 2.5e9) add += 100e3;
-                if (collateral > 3e9) add += 200e3;
-            }
-
             if (expedited) mult *= 2.0;
-            if (lowNullSec) mult *= 2;
 
-            let calcReward = ((mult * base * collateral / 1e9) + add) * jumpsUsed;
-            let reward;
+            // Apply Lowsec and Nullsec multipliers
+            if (lowSec) mult *= 1.10;   // +10%
+            if (nullSec) mult *= 1.20;  // +20%
+            // If both are checked, both multipliers apply (multiplicative stacking)
 
-            // If the calculated reward is less than 10M, add 10M to the calculated reward
-            if (calcReward < 10_000_000) {
-                reward = calcReward + 10_000_000;
-            } else {
-                reward = calcReward;
-            }
+            let reward = baseReward * mult;
 
             // Apply discount if trusted and code matches
             let discount = 0;
-            let discountApplied = false;
             if (trusted && trustedDiscounts[trusted]) {
                 if (code && code === trustedDiscounts[trusted].code) {
                     discount = trustedDiscounts[trusted].discount;
                     reward = reward * (1 - discount);
                     discountMsg.innerHTML = `<span class="discount-success">Discount applied: ${(discount*100).toFixed(0)}% off!</span>`;
-                    discountApplied = true;
                 } else if (code) {
                     discountMsg.innerHTML = `<span class="discount-fail">Invalid secret code for selected corp/player.</span>`;
                 }
@@ -313,7 +297,7 @@
             reward += tip;
 
             document.getElementById("result").innerText =
-                `Estimated Reward: ${reward.toLocaleString()} ISK`;
+                `Estimated Reward: ${Math.round(reward).toLocaleString()} ISK`;
         }
     </script>
 </body>
