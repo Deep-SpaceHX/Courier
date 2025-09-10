@@ -33,11 +33,12 @@
             text-decoration: underline;
         }
         main {
-            padding: 20px;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
+            min-height: 80vh;
+            padding: 20px;
         }
         h1, h2 {
             color: #FFC107;
@@ -119,35 +120,35 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 1;
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(255, 193, 7, 0.5) 0%, rgba(255, 193, 7, 0) 80%);
+            background: radial-gradient(circle, rgba(255,193,7,0.4) 0%, rgba(255,193,7,0) 80%);
             border: 2px solid rgba(255, 193, 7, 0.8);
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
-            animation: float 3s ease-in-out infinite;
-            opacity: 0.9;
+            box-shadow: 0 0 20px 8px rgba(255,193,7,0.7);
+            animation: floatY 4s ease-in-out infinite;
+            opacity: 0.88;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        .hologram.left { left: -220px; }
+        .hologram.right { right: -220px; }
+
         .hologram img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
+            box-shadow: 0 0 40px 10px #ffc10788, 0 0 80px 20px #ffc10744;
         }
-        .hologram.left {
-            left: -220px;
-        }
-        .hologram.right {
-            right: -220px;
-        }
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(-50%) translateX(0);
-            }
-            50% {
-                transform: translateY(-60%) translateX(0);
-            }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            25%      { transform: translateY(-55%) scale(1.04); }
+            50%      { transform: translateY(-60%) scale(1.08); }
+            75%      { transform: translateY(-55%) scale(1.04); }
         }
     </style>
 </head>
@@ -169,7 +170,7 @@
     <main>
         <!-- Left Hologram (DSHX Logo) -->
         <div class="hologram left">
-            <img src="logo.png" alt="DSHX Logo Hologram">
+            <img src="hologram1.png" alt="DSHX Logo Hologram">
         </div>
         <!-- Calculator -->
         <div class="calculator-container">
@@ -228,7 +229,7 @@
         </div>
         <!-- Right Hologram (DSHX Logo) -->
         <div class="hologram right">
-            <img src="logo.png" alt="DSHX Logo Hologram">
+            <img src="hologram2.png" alt="DSHX Logo Hologram">
         </div>
     </main>
     <footer>
@@ -241,6 +242,10 @@
             "player1": { code: "PROFIT10!", discount: 0.10 }, // 10% discount
             "player2": { code: "JOHN321", discount: 0.10 }  // 10% discount
         };
+
+        // DST recommended cap values
+        const MAX_REWARD = 150_000_000; // cap total reward per contract
+        const MAX_COLLATERAL = 10e9;    // max accepted collateral for DST jobs
 
         function calculateReward() {
             let jumps = parseFloat(document.getElementById("jumps").value);
@@ -265,19 +270,18 @@
             if (isNaN(tip) || tip < 0) {
                 tip = 0;
             }
+            if (collateral > MAX_COLLATERAL) {
+                document.getElementById("result").innerText = `Collateral exceeds DST contract maximum of ${MAX_COLLATERAL.toLocaleString()} ISK. Please split into multiple contracts.`;
+                return;
+            }
 
-            // TIERED REWARD SYSTEM
+            // TIERED REWARD SYSTEM:
             // < 1B: 850k/jump
             // 1-2B: 1M/jump
             // 2-3B: 2M/jump
             // 3-4B: 3M/jump
-            // 4-5B: 4M/jump
-            // 5-6B: 5M/jump
-            // 6-7B: 6M/jump
-            // 7-8B: 7M/jump
-            // 8-9B: 8M/jump
-            // 9-10B: 9M/jump
-            // >10B: 10M/jump (or continue scaling as desired)
+            // ...etc, up to 10B: 10M/jump
+            // >10B: not allowed (handled above)
 
             let perJumpReward = 0;
             if (collateral < 1e9) {
@@ -301,8 +305,8 @@
             } else if (collateral < 10e9) {
                 perJumpReward = 9000000;
             } else {
-                // For collateral >= 10b, continue scaling linearly at 1m/jump per additional billion
-                perJumpReward = Math.floor(collateral / 1e9) * 1000000;
+                // For collateral >= 10b, this should not occur (blocked above)
+                perJumpReward = 10000000;
             }
 
             let baseReward = perJumpReward * jumps;
@@ -330,6 +334,9 @@
             }
 
             reward += tip;
+
+            // Cap the total reward
+            if (reward > MAX_REWARD) reward = MAX_REWARD;
 
             document.getElementById("result").innerText =
                 `Estimated Reward: ${Math.round(reward).toLocaleString()} ISK`;
