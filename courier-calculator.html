@@ -266,19 +266,54 @@
                 tip = 0;
             }
 
-            // NEW REWARD FORMULA
-            // 1,000,000 ISK per jump per 1B ISK of collateral (fractional for less than 1B)
-            let rewardPerJump = (collateral / 1e9) * 1e6;
-            let baseReward = rewardPerJump * jumps;
+            // TIERED REWARD SYSTEM
+            // < 1B: 850k/jump
+            // 1-2B: 1M/jump
+            // 2-3B: 2M/jump
+            // 3-4B: 3M/jump
+            // 4-5B: 4M/jump
+            // 5-6B: 5M/jump
+            // 6-7B: 6M/jump
+            // 7-8B: 7M/jump
+            // 8-9B: 8M/jump
+            // 9-10B: 9M/jump
+            // >10B: 10M/jump (or continue scaling as desired)
 
-            // Expedited is not mentioned in new rules, but keeping for backward compatibility if needed
+            let perJumpReward = 0;
+            if (collateral < 1e9) {
+                perJumpReward = 850000;
+            } else if (collateral < 2e9) {
+                perJumpReward = 1000000;
+            } else if (collateral < 3e9) {
+                perJumpReward = 2000000;
+            } else if (collateral < 4e9) {
+                perJumpReward = 3000000;
+            } else if (collateral < 5e9) {
+                perJumpReward = 4000000;
+            } else if (collateral < 6e9) {
+                perJumpReward = 5000000;
+            } else if (collateral < 7e9) {
+                perJumpReward = 6000000;
+            } else if (collateral < 8e9) {
+                perJumpReward = 7000000;
+            } else if (collateral < 9e9) {
+                perJumpReward = 8000000;
+            } else if (collateral < 10e9) {
+                perJumpReward = 9000000;
+            } else {
+                // For collateral >= 10b, continue scaling linearly at 1m/jump per additional billion
+                perJumpReward = Math.floor(collateral / 1e9) * 1000000;
+            }
+
+            let baseReward = perJumpReward * jumps;
+
+            // Expedited
             let mult = 1;
             if (expedited) mult *= 2.0;
 
             // Apply Lowsec and Nullsec multipliers
             if (lowSec) mult *= 1.10;   // +10%
             if (nullSec) mult *= 1.20;  // +20%
-            // If both are checked, both multipliers apply (multiplicative stacking)
 
             let reward = baseReward * mult;
 
