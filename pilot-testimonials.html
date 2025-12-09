@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pilot Testimonials — Deep Space Hauling Express</title>
+  <meta name="description" content="Pilot testimonials from members of Deep Space Hauling Express (DSHX)." />
+  <style>
+    :root{
+      --brown:#3E2723;
+      --gold:#FFC107;
+      --muted:#f3e6dd;
+      --card-text:#111;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+    }
+
+    html,body{height:100%;margin:0}
+    body{
+      font-family: "Inter", Arial, sans-serif;
+      background: linear-gradient(180deg,#3E2723 0%, #3a231f 100%);
+      color: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* Header */
+    header{
+      padding:22px 18px;
+      text-align:center;
+      border-bottom:1px solid rgba(255,255,255,0.04);
+    }
+    header img{height:72px;display:block;margin:0 auto 6px}
+    header h1{margin:4px 0;font-size:1.6rem;color:var(--gold)}
+    nav{margin-top:8px}
+    nav a{color:var(--gold);text-decoration:none;margin:0 10px;font-weight:600}
+    nav a:hover{text-decoration:underline}
+
+    /* Page layout */
+    .page{
+      max-width:1200px;
+      margin:28px auto;
+      padding:0 18px 48px;
+    }
+
+    /* Hero / featured */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:20px;
+      align-items:stretch;
+      margin-bottom:20px;
+    }
+
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:22px;
+      border-radius:var(--radius);
+      border: 1px solid rgba(255,255,255,0.04);
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+    .hero-card .hero-photo{
+      width:132px;height:132px;border-radius:50%;object-fit:cover;border:4px solid rgba(0,0,0,0.06);
+      flex:0 0 132px;
+      background:linear-gradient(180deg,#fff3cc,#ffe9b3);
+    }
+    .hero-card h2{margin:0;color:var(--gold);font-size:1.15rem}
+    .hero-card p{margin:6px 0 0;color:#fff;opacity:0.95}
+
+    /* Filters column */
+    .filters{
+      background:var(--glass);
+      color:#fff;
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,0.03);
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .filters label{font-size:0.95rem;color:var(--gold);font-weight:700}
+    .search{
+      display:flex;
+      gap:8px;
+    }
+    input[type="search"], select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      background:#fff;
+      border:none;
+      font-size:0.95rem;
+      color:#111;
+    }
+    .small-note{font-size:0.9rem;color:rgba(255,255,255,0.9)}
+
+    /* Testimonials grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+      margin-top:16px;
+    }
+    .card{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      padding:16px;
+      border-radius:12px;
+      background:linear-gradient(180deg,#fff,#f6f6f6);
+      color:var(--card-text);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+    .card-inline{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .photo{
+      width:84px;height:84px;border-radius:50%;object-fit:cover;flex:0 0 84px;border:3px solid rgba(0,0,0,0.06);
+      background:linear-gradient(180deg,#fff,#eee);
+    }
+    .meta h3{margin:0;font-size:1rem}
+    .meta p{margin:6px 0 0;color:#333;font-size:0.95rem}
+
+    /* Accent styles for a few cards (alternating) */
+    .card.featured{
+      grid-column: span 3;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      padding:22px;
+    }
+    .card.featured .photo{width:160px;height:160px;flex:0 0 160px}
+    .card.featured .meta h3{font-size:1.25rem;color:#111}
+    .card.featured .meta p{font-size:1rem;color:#222}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .card.featured{grid-column:span 2}
+    }
+    @media (max-width:640px){
+      header img{height:60px}
+      nav a{display:inline-block;margin:6px 8px}
+      .page{padding-bottom:32px}
+      .grid{grid-template-columns:1fr}
+      .filters{display:none} /* hide filter on small screens to save space */
+    }
+
+    /* Tiny utility */
+    a.cta{
+      display:inline-block;
+      margin-top:8px;
+      background:var(--gold);
+      color:var(--brown);
+      padding:8px 14px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:700;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="DSHX Logo">
+    <h1>Deep Space Hauling Express</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="members.html">Members</a>
+      <a href="recruitment.html">Recruitment</a>
+      <a href="quarterly-hauling.html">Quarterly Hauling</a>
+      <a href="courier-calculator.html">Courier Calculator</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+
+  <main class="page" role="main">
+    <!-- Hero + Filters -->
+    <div class="hero" role="region" aria-label="Featured testimonial and filters">
+      <!-- Left: featured testimonial -->
+      <article class="hero-card" aria-labelledby="featured-title">
+        <img class="hero-photo" src="images/testimonials/featured.jpg" alt="Commander A. Reyes">
+        <div>
+          <h2 id="featured-title">"Streamlined my runs" — Commander A. Reyes</h2>
+          <p>The Courier calculator + DSHX route planning made my runs more profitable and far less effort. Quick payouts and minimal fuss — exactly what I need between contracts.</p>
+          <a class="cta" href="recruitment.html">Join DSHX</a>
+        </div>
+      </article>
+
+      <!-- Right: filters / quick actions -->
+      <aside class="filters" aria-label="Search and filters">
+        <div>
+          <label for="q">Search testimonials</label>
+          <div class="search">
+            <input id="q" type="search" placeholder="Search name, quote or role" aria-label="Search testimonials">
+          </div>
+        </div>
+
+        <div>
+          <label for="role">Filter by role</label>
+          <select id="role" aria-label="Filter by role">
+            <option value="">All pilots</option>
+            <option value="commander">Commander</option>
+            <option value="pilot">Pilot</option>
+            <option value="freelancer">Freelancer</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="sort">Sort</label>
+          <select id="sort" aria-label="Sort testimonials">
+            <option value="recent">Most recent</option>
+            <option value="top">Top rated</option>
+            <option value="alpha">A → Z</option>
+          </select>
+        </div>
+
+        <div class="small-note">
+          Tip: Upload optimized headshots to <code>images/testimonials/</code> and update the img src in the card.
+        </div>
+      </aside>
+    </div>
+
+    <!-- Testimonials grid -->
+    <section class="grid" aria-label="All testimonials">
+      <!-- Featured big card (spans full width) -->
+      <article class="card featured" aria-labelledby="ftitle">
+        <img class="photo" src="images/testimonials/commander-reyes.jpg" alt="Commander A. Reyes">
+        <div class="meta">
+          <h3 id="ftitle">"Highest uptime and clear payouts" — Commander A. Reyes</h3>
+          <p>I've been using DSHX for months and the combination of their calculator with predictable pickup windows made my schedule consistent — saved me countless docking fees and headaches.</p>
+          <p style="margin-top:10px;font-weight:600;color:#555">— 5-star reliability</p>
+        </div>
+      </article>
+
+      <!-- Regular cards -->
+      <article class="card" aria-labelledby="t1">
+        <div class="card-inline">
+          <img class="photo" src="images/testimonials/pilot-tran.jpg" alt="Pilot K. Tran">
+          <div class="meta">
+            <h3 id="t1">"Reliable payouts" — Pilot K. Tran</h3>
+            <p>DSHX keeps things simple: clear fees, on-time pickups, and payouts I can count on. Great for small wings.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" aria-labelledby="t2">
+        <div class="card-inline">
+          <img class="photo" src="images/testimonials/j-morgan.jpg" alt="Freelancer J. Morgan">
+          <div class="meta">
+            <h3 id="t2">"Great support" — Freelancer J. Morgan</h3>
+            <p>Customer support answered my question about tiered payouts in under an hour — indispensable for freelancers like me.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" aria-labelledby="t3">
+        <div class="card-inline">
+          <img class="photo" src="https://via.placeholder.com/420x420.png?text=AR" alt="Pilot placeholder">
+          <div class="meta">
+            <h3 id="t3">"Fast routing" — Pilot S. Clarke</h3>
+            <p>The routing suggestions have reduced my travel time significantly — I can take more jobs per shift.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" aria-labelledby="t4">
+        <div class="card-inline">
+          <img class="photo" src="https://via.placeholder.com/420x420.png?text=KT" alt="Pilot placeholder">
+          <div class="meta">
+            <h3 id="t4">"Good for wings" — Wing Lead R.</h3>
+            <p>We moved our weekly runs to DSHX and the payout clarity has helped our group's budget planning.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" aria-labelledby="t5">
+        <div class="card-inline">
+          <img class="photo" src="https://via.placeholder.com/420x420.png?text=JM" alt="Pilot placeholder">
+          <div class="meta">
+            <h3 id="t5">"Flexible pickups" — Freelancer L.</h3>
+            <p>Flexible pickup windows are a lifesaver when I have irregular play times. Keeps me in business.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Submit & guidelines -->
+    <section style="margin-top:20px">
+      <div style="background:var(--glass);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)">
+        <h3 style="margin:0 0 6px;color:var(--gold)">Add your testimonial</h3>
+        <p style="margin:0;color:#fff;opacity:0.95">Email a short quote and a headshot to <a href="mailto:hello@courier.example" style="color:var(--gold)">hello@courier.example</a>, or upload an optimized image (JPG/WebP) to <code>images/testimonials/</code> and copy a card in this page to add your entry.</p>
+        <p style="margin-top:8px;color:#fff;font-size:0.95rem"><strong>Image recommendation:</strong> 800px max on long side, crop square or tight headshot, use short filenames (no spaces).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:14px 0;border-top:1px solid rgba(255,255,255,0.03)">
+    <p style="margin:4px 0">Fly Safe. Deliver Smart. Profit More. &copy; 2025 Deep Space Hauling Express</p>
+  </footer>
+</body>
+</html>
