@@ -61,11 +61,20 @@
             background-color: #3E2723; /* Brown background for table header */
             color: #FFC107; /* Gold text for table header */
         }
+        tfoot th {
+            background-color: #000000; /* Slightly different background for totals */
+            color: #FFC107;
+        }
         footer {
             text-align: center;
             padding: 10px 0;
             background-color: #3E2723; /* Brown background for footer */
             color: #FFFFFF; /* White text */
+        }
+        .note {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #FFFFFF;
         }
     </style>
 </head>
@@ -125,8 +134,43 @@
                         <td>12,509,332,876 ISK</td>
                         <td>21,156,297.80 m³</td>
                     </tr>
+                    <!-- 2025 totals -->
+                    <tr>
+                        <th>2025 Totals</th>
+                        <th>998</th>
+                        <th>33,452,230,271 ISK</th>
+                        <th>35,835,385 m³</th>
+                    </tr>
+
+                    <!-- 2026 quarters (placeholders) -->
+                    <tr>
+                        <td>Q1 2026</td>
+                        <td>TBD</td>
+                        <td>TBD</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td>Q2 2026</td>
+                        <td>TBD</td>
+                        <td>TBD</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td>Q3 2026</td>
+                        <td>TBD</td>
+                        <td>TBD</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td>Q4 2026</td>
+                        <td>TBD</td>
+                        <td>TBD</td>
+                        <td>TBD</td>
+                    </tr>
                 </tbody>
             </table>
+
+            <p class="note">Note: 2026 quarter values are marked "TBD" — provide values and I'll populate them (and add a 2026 total row if you want).</p>
         </div>
     </main>
     <footer>
