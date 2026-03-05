@@ -139,10 +139,58 @@
     .card.featured .meta h3{font-size:1.25rem;color:#111}
     .card.featured .meta p{font-size:1rem;color:#222}
 
+    /* Section headers */
+    .testimonial-section{
+      margin-top:32px;
+    }
+    .section-header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .section-header h2{
+      margin:0;
+      color:var(--gold);
+      font-size:1.3rem;
+      flex:1;
+    }
+    .section-toggle{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:28px;
+      height:28px;
+      background:var(--gold);
+      color:var(--brown);
+      border-radius:6px;
+      font-weight:700;
+      transition:transform 0.2s ease;
+    }
+    .section-toggle.collapsed{
+      transform:rotate(-90deg);
+    }
+    .section-content{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+      max-height:2000px;
+      overflow:hidden;
+      transition:max-height 0.3s ease, opacity 0.3s ease;
+      opacity:1;
+    }
+    .section-content.hidden{
+      max-height:0;
+      opacity:0;
+    }
+
     /* Responsive */
     @media (max-width:980px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:repeat(2,1fr)}
+      .section-content{grid-template-columns:repeat(2,1fr)}
       .card.featured{grid-column:span 2}
     }
     @media (max-width:640px){
@@ -150,6 +198,7 @@
       nav a{display:inline-block;margin:6px 8px}
       .page{padding-bottom:32px}
       .grid{grid-template-columns:1fr}
+      .section-content{grid-template-columns:1fr}
       .filters{display:none} /* hide filter on small screens to save space */
     }
 
@@ -226,72 +275,106 @@
             <option value="alpha">A → Z</option>
           </select>
         </div>
-
-        </div>
       </aside>
     </div>
 
-    <!-- Testimonials grid -->
-    <section class="grid" aria-label="All testimonials">
-      <!-- Featured big card (spans full width) -->
-      <article class="card featured" aria-labelledby="ftitle">
-        <img class="photo" src="images/testimonials/Roselin-Ivy.jpg" alt="Roselin Ivy">
-        <div class="meta">
-          <h3 id="ftitle">"I can wholeheartedly recommend DSHX to other pilots." — Roselin Ivy</h3>
-          <p>DSHX handled my transport contract efficiently, on time, and without the slightest complication, which really makes a difference in the realities of New Eden. The team demonstrated very clear communication and a professional approach at every stage of the order. What particularly distinguishes their services is their consistent reliability and attention to cargo safety, regardless of the level of risk on the route.</p>
-        </div>
-      </article>
-
-      <!-- Regular cards -->
-      <article class="card" aria-labelledby="t1">
-        <div class="card-inline">
-          <img class="photo" src="images/testimonials/Jake-Connally.jpg" alt="Jake Connally">
+    <!-- Featured Testimonials Section -->
+    <section class="testimonial-section">
+      <div class="section-header" onclick="toggleSection(event, 'featured-section')">
+        <h2>Featured Testimonials</h2>
+        <span class="section-toggle"></span>
+      </div>
+      <div class="section-content" id="featured-section">
+        <!-- Featured big card (spans full width) -->
+        <article class="card featured" aria-labelledby="ftitle">
+          <img class="photo" src="images/testimonials/Roselin-Ivy.jpg" alt="Roselin Ivy">
           <div class="meta">
-            <h3 id="t1">"Best service out there" — Jake Connally</h3>
-            <p>DSHX has proven to be fast, reliable, and highly professional. I trust them with every contract, no matter the value.</p>
+            <h3 id="ftitle">"I can wholeheartedly recommend DSHX to other pilots." — Roselin Ivy</h3>
+            <p>DSHX handled my transport contract efficiently, on time, and without the slightest complication, which really makes a difference in the realities of New Eden. The team demonstrated very clear communication and a professional approach at every stage of the order. What particularly distinguishes their services is their consistent reliability and attention to cargo safety, regardless of the level of risk on the route.</p>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
+    </section>
 
-      <article class="card" aria-labelledby="t2">
-        <div class="card-inline">
-          <img class="photo" src="images/testimonials/Freyja-Asynjor.jpg" alt="Freyja Asynjor">
-          <div class="meta">
-            <h3 id="t2">"Great service!" — Freyja Asynjor</h3>
-            <p>Helped me retrieve items from my pause from eve back in 2019. Would reccomend to folks in need of quick transport o7.</p>
+    <!-- Primary Testimonials Section -->
+    <section class="testimonial-section">
+      <div class="section-header" onclick="toggleSection(event, 'primary-section')">
+        <h2>Primary Testimonials</h2>
+        <span class="section-toggle"></span>
+      </div>
+      <div class="section-content" id="primary-section">
+        <article class="card" aria-labelledby="t1">
+          <div class="card-inline">
+            <img class="photo" src="images/testimonials/Jake-Connally.jpg" alt="Jake Connally">
+            <div class="meta">
+              <h3 id="t1">"Best service out there" — Jake Connally</h3>
+              <p>DSHX has proven to be fast, reliable, and highly professional. I trust them with every contract, no matter the value.</p>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <article class="card" aria-labelledby="t3">
-        <div class="card-inline">
-          <img class="photo" src="images/testimonials/Oltta-Talvanen.jpg" alt="Oltta Talvanen">
-          <div class="meta">
-            <h3 id="t3">"I Don’t Worry Once DSHX Has It" — Oltta Talvanen</h3>
-            <p>Moving cargo through low-sec and null-sec always comes with risk, but working with DSHX takes a lot of the stress out of it. They keep me informed, handle contracts professionally, and deliver reliably, which makes them easy to trust with valuable shipments.</p>
+        <article class="card" aria-labelledby="t2">
+          <div class="card-inline">
+            <img class="photo" src="images/testimonials/Freyja-Asynjor.jpg" alt="Freyja Asynjor">
+            <div class="meta">
+              <h3 id="t2">"Great service!" — Freyja Asynjor</h3>
+              <p>Helped me retrieve items from my pause from eve back in 2019. Would reccomend to folks in need of quick transport o7.</p>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <article class="card" aria-labelledby="t4">
-        <div class="card-inline">
-          <img class="photo" src="images/testimonials/Jason-Aiderona.jpg" alt="Jason Aiderona">
-          <div class="meta">
-            <h3 id="t4">"Would strongly recommend for their efficiency and reasonable fees." — Jason Aiderona</h3>
-            <p>I had items from asset security in low-sec that I needed transported to a trade hub. DSHX delivered my items expeditiously, and at a much lower cost than most other hauling services I've come across.</p>
+        <article class="card" aria-labelledby="t3">
+          <div class="card-inline">
+            <img class="photo" src="images/testimonials/Oltta-Talvanen.jpg" alt="Oltta Talvanen">
+            <div class="meta">
+              <h3 id="t3">"I Don't Worry Once DSHX Has It" — Oltta Talvanen</h3>
+              <p>Moving cargo through low-sec and null-sec always comes with risk, but working with DSHX takes a lot of the stress out of it. They keep me informed, handle contracts professionally, and deliver reliably, which makes them easy to trust with valuable shipments.</p>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <article class="card" aria-labelledby="t5">
-        <div class="card-inline">
-          <img class="photo" src="images/testimonials/Reaper-JO.jpg" alt="Reaper JO">
-          <div class="meta">
-            <h3 id="t5">"Phenomenal Hauling services from this corporation at a fair rate." — Reaper JO</h3>
-            <p>Hauling needs have always been met on time, at a great price point, and a tier 1 experience. Would highly recommend for all hauling services I have used thus far including Hisec freighter, Lowsec DST + Blockade runner, and even moving supplies out of NPC Null.</p>
+        <article class="card" aria-labelledby="t4">
+          <div class="card-inline">
+            <img class="photo" src="images/testimonials/Jason-Aiderona.jpg" alt="Jason Aiderona">
+            <div class="meta">
+              <h3 id="t4">"Would strongly recommend for their efficiency and reasonable fees." — Jason Aiderona</h3>
+              <p>I had items from asset security in low-sec that I needed transported to a trade hub. DSHX delivered my items expeditiously, and at a much lower cost than most other hauling services I've come across.</p>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+
+        <article class="card" aria-labelledby="t5">
+          <div class="card-inline">
+            <img class="photo" src="images/testimonials/Reaper-JO.jpg" alt="Reaper JO">
+            <div class="meta">
+              <h3 id="t5">"Phenomenal Hauling services from this corporation at a fair rate." — Reaper JO</h3>
+              <p>Hauling needs have always been met on time, at a great price point, and a tier 1 experience. Would highly recommend for all hauling services I have used thus far including Hisec freighter, Lowsec DST + Blockade runner, and even moving supplies out of NPC Null.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="t6">
+          <div class="card-inline">
+            <img class="photo" src="images/testimonials/M3N4C3-2-POPO.jpg" alt="M3N4C3-2-POPO">
+            <div class="meta">
+              <h3 id="t6">"5/5" — M3N4C3-2-POPO</h3>
+              <p>Struggle for days to find someone to bring my stuff to low sec for FW. Met Kenji and not only did he sort a reasonable price but he delivered it that day o7</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Additional Testimonials Section (for future additions) -->
+    <section class="testimonial-section">
+      <div class="section-header" onclick="toggleSection(event, 'additional-section')">
+        <h2>Additional Testimonials</h2>
+        <span class="section-toggle"></span>
+      </div>
+      <div class="section-content" id="additional-section">
+        <!-- Add new testimonial cards here -->
+        <p style="grid-column:1/-1;color:#ccc;padding:20px;text-align:center">No additional testimonials yet. Check back soon!</p>
+      </div>
     </section>
 
     <!-- Submit & guidelines -->
@@ -306,5 +389,16 @@
   <footer style="text-align:center;padding:14px 0;border-top:1px solid rgba(255,255,255,0.03)">
     <p style="margin:4px 0">Fly Safe. Deliver Smart. Profit More. &copy; 2025 Deep Space Hauling Express</p>
   </footer>
+
+  <script>
+    function toggleSection(event, sectionId) {
+      event.preventDefault();
+      const section = document.getElementById(sectionId);
+      const toggle = event.currentTarget.querySelector('.section-toggle');
+      
+      section.classList.toggle('hidden');
+      toggle.classList.toggle('collapsed');
+    }
+  </script>
 </body>
 </html>
